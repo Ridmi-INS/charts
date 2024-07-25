@@ -174,8 +174,8 @@ jobs:
       - name: 'Run :: Update Helm Values'
         run: |2-
 
-              echo "hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee ${{ toJson(github.event.client_payload) }}" 
-              response=$(curl -X POST -d "helmUpdateValues=${{ github.event.client_payload.helmUpdateValues }}"  -H 'Authorization: ${{ env.SERVICE_ACC_ACCESS_TOKEN }}' -H 'x-organization-id: ${{ env.PIPELINE_ORGANIZATION_ID }}' -H 'x-project-id: ${{ env.PIPELINE_PROJECT_ID }}' -H 'x-environment-id: ${{ env.PIPELINE_ENVIRONMENT_ID }}' -H 'x-application-id: ${{ env.PIPELINE_APPLICATION_ID }}' -H 'x-trace-id: ${{ env.PIPELINE_TRACE_ID }}' -H 'x-auth-by: sa' -H 'Content-Type: application/x-www-form-urlencoded'  "${{ env.API_GATEWAY_BASEURL }}/resource-service/applications/update-helm-values")
+              echo "hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee ${{ toJson(github.event.client_payload.helmUpdateValues) }}" 
+              response=$(curl -X POST -d "helmUpdateValues=${{ toJson(github.event.client_payload.helmUpdateValues) }}"  -H 'Authorization: ${{ env.SERVICE_ACC_ACCESS_TOKEN }}' -H 'x-organization-id: ${{ env.PIPELINE_ORGANIZATION_ID }}' -H 'x-project-id: ${{ env.PIPELINE_PROJECT_ID }}' -H 'x-environment-id: ${{ env.PIPELINE_ENVIRONMENT_ID }}' -H 'x-application-id: ${{ env.PIPELINE_APPLICATION_ID }}' -H 'x-trace-id: ${{ env.PIPELINE_TRACE_ID }}' -H 'x-auth-by: sa' -H 'Content-Type: application/x-www-form-urlencoded'  "${{ env.API_GATEWAY_BASEURL }}/resource-service/applications/update-helm-values")
 
               if echo "$response" | grep -q '"success":true'; then
                 echo "SUCCESS :: $response"
